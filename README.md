@@ -1,123 +1,58 @@
 # Tasmonator
 
-This tool is designed to configure Tasmota devices using static and custom configuration files, and to generate these configurations from a Tasmota backup. The project is structured to allow easy extension and maintenance.
-
-## Features
-
-- Configure Tasmota devices with static and custom configurations.
-- Generate YAML configuration files from a Tasmota backup.
-- Log Tasmota device console output and tool actions for easy debugging.
+Tasmonator is a tool for configuring Tasmota devices and managing their configuration backups.
 
 ## Installation
 
-### Prerequisites
-
-- Python 3.6 or higher
-- `pip` package installer
-
-### Steps
-
-1. Clone the repository:
+1. **Clone the repository**:
 
     ```bash
-    git clone https://github.com/michaelkandziora/tasmota.configuration-tool.git
+    git clone https://github.com/michaelkandziora/tasmota.configuration-tool
     cd tasmota.configuration-tool
     ```
 
-2. Create a virtual environment:
+2. **Setup the virtual environment and install dependencies**:
 
     ```bash
-    python -m venv .
-    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-    ```
-
-3. Install the package:
-
-    ```bash
-    pip install -e .
+    make
     ```
 
 ## Usage
 
-### Configure a Tasmota Device
+### Read Backup File
 
-To configure a Tasmota device, you need its IP address and optionally a custom configuration YAML file.
-
-```bash
-tasmonator configure <ip_address> <path_to_custom_config.yaml> --debug
-```
-
-- `ip_address`: The IP address of the Tasmota device.
-- `path_to_custom_config.yaml`: (Optional) Path to the custom configuration YAML file.
-- `--debug`: (Optional) Enable debug mode for detailed logging.
-
-Example:
+This command reads a Tasmota backup file and generates `new-static-config.json`, `new-custom-config.json`, and `updated-static-config.json`.
 
 ```bash
-tasmonator configure 192.168.0.100 ./custom-config.yaml --debug
+tasmonator readbackup ./Config_tasmota_C84A60_2656_13.4.0.dmp
 ```
 
-### Read a Tasmota Backup
+### Merge Configurations
 
-To generate YAML configuration files from a Tasmota backup, you need the path to the backup file.
+This command merges `static-config.json`, `updated-static-config.json`, and `new-custom-config.json` into `final-merged-config.json`.
 
 ```bash
-tasmonator readbackup <path_to_backup_file>
+tasmonator mergeconfigs
 ```
 
-Example:
+### Configure Device
+
+This command configures a Tasmota device using the provided custom configuration.
 
 ```bash
-tasmonator readbackup /path/to/Config_tasmota_C84A60_2656_13.4.0.dmp
+tasmonator configure <ip_address> <custom_config.json> --debug
 ```
 
-This will generate `new-static-config.yaml` and `new-custom-config.yaml` in the current directory.
-
-## Project Structure
-
-```
-tasmonator/
-│
-├── tasmonator/
-│   ├── __init__.py
-│   ├── cli.py
-│   ├── config_manager.py
-│   ├── device_manager.py
-│   ├── exceptions.py
-│   └── utils.py
-│
-├── tests/
-│   ├── __init__.py
-│   ├── test_config_manager.py
-│   ├── test_device_manager.py
-│   └── test_utils.py
-│
-├── static-config.yaml
-├── custom-config.yaml
-├── Config_tasmota_C84A60_2656_13.4.0.dmp
-└── setup.py
-```
-
-### `tasmonator` Module
-
-- `cli.py`: Command-line interface for the tool.
-- `config_manager.py`: Manages configuration file operations.
-- `device_manager.py`: Manages communication and configuration of Tasmota devices.
-- `exceptions.py`: Custom exception classes.
-- `utils.py`: Utility functions.
-
-### Tests
-
-Unit tests are located in the `tests/` directory. To run the tests, use:
+### Example
 
 ```bash
-python -m unittest discover tests
+tasmonator configure 192.168.0.100 new-custom-config.json --debug
 ```
 
 ## Contributing
 
-Contributions are welcome! Please fork the repository and create a pull request with your changes. Ensure that your code adheres to the existing coding standards and includes appropriate test coverage.
+Feel free to submit issues and pull requests to contribute to the project.
 
 ## License
 
-This project is licensed under the MIT License. See the `LICENSE` file for more details.
+This project is licensed under the MIT License.

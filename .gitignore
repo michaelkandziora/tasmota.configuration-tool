@@ -1,8 +1,8 @@
 # User 
 # Tasmota
 Config_tasmota_*
-new-custom-config.yaml
-new-static-config.yaml
+new*
+output.json
 
 bin/*
 include/*
