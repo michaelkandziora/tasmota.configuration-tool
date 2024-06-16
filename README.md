@@ -27,7 +27,7 @@ This tool is designed to configure Tasmota devices using static and custom confi
 2. Create a virtual environment:
 
     ```bash
-    python -m venv venv
+    python -m venv .
     source venv/bin/activate  # On Windows use `venv\Scripts\activate`
     ```
 
