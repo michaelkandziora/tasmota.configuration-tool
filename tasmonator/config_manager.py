@@ -1,6 +1,6 @@
-import yaml
+import subprocess
 import json
-import os
+import yaml
 import logging
 
 class ConfigManager:
@@ -12,8 +12,21 @@ class ConfigManager:
             return yaml.safe_load(file)
 
     def read_backup(self, backup_file_path):
-        with open(backup_file_path, 'r') as file:
-            backup_data = json.load(file)
+        try:
+            # Call the decode-config binary
+            result = subprocess.run(
+                ['bin/decode-config', '--source', backup_file_path, '--output-format', 'json'],
+                capture_output=True,
+                text=True,
+                check=True
+            )
+            backup_data = json.loads(result.stdout)
+        except subprocess.CalledProcessError as e:
+            logging.error(f"Failed to decode backup file: {e}")
+            raise
+        except json.JSONDecodeError as e:
+            logging.error(f"Failed to parse JSON from decoded data: {e}")
+            raise
 
         new_static_config = {}
         new_custom_config = {}
