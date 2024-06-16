@@ -1,7 +1,7 @@
 import argparse
 import logging
 from tasmonator.config_manager import ConfigManager
-from tasmonator.device_manager import DeviceManagers
+from tasmonator.device_manager import DeviceManager
 
 def configure_device(ip_address, custom_config_path=None, debug=False):
     config_manager = ConfigManager()
