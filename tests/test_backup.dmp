@@ -1,0 +1,23 @@
+{
+    "NAME": "TasmotaDevice",
+    "GPIO": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    "FLAG": 0,
+    "BASE": 18,
+    "CMND": "power on",
+    "Module": 0,
+    "HostName": "tasmota",
+    "IPAddress1": "192.168.0.100",
+    "IPAddress2": "255.255.255.0",
+    "IPAddress3": "192.168.0.1",
+    "WebServer": 2,
+    "Sleep": 0,
+    "LedState": 1,
+    "FriendlyName": "Tasmota Device",
+    "Power": 1,
+    "LedPower": 1,
+    "RelayState": 0,
+    "Temperature": 22.5,
+    "Humidity": 60,
+    "Dimmer": 50,
+    "Color": "FFFFFF"
+}

@@ -7,7 +7,7 @@ class TestDeviceManager(unittest.TestCase):
     def setUp(self):
         self.device_manager = DeviceManager('192.168.0.100')
 
-    @patch('tasmota_config_tool.device_manager.requests.get')
+    @patch('tasmonator.device_manager.requests.get')
     def test_send_tasmota_command(self, mock_get):
         mock_get.return_value.status_code = 200
         mock_get.return_value.text = 'OK'

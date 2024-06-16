@@ -1,0 +1,10 @@
+nspanel:
+  - template: {"NAME":"NSPanel","GPIO":[0,0,0,0,3872,0,0,0,0,0,32,0,0,0,0,225,0,480,224,1,0,0,0,33,0,0,0,0,0,0,0,0,0,0,4736,0],"FLAG":0,"BASE":1,"CMND":"ADCParam 2,11200,10000,3950 | Sleep 0 | BuzzerPWM 1"}
+  - cmds:
+    - Backlog UrlFetch https://raw.githubusercontent.com/joBr99/nspanel-lovelace-ui/main/tasmota/autoexec.be; SetOption151 0;Restart 1
+    - FlashNextion http://nspanel.pky.eu/lui-release.tft
+    - Backlog mqtthost <mqtt_broker_address>; mqttport <mqtt_broker_port>; mqttuser <username>; mqttpassword <password>;
+shelly-dimmer:
+  - template: {}
+  - cmds:
+    - SetOption19 0

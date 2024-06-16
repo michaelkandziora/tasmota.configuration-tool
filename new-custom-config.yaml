@@ -1,0 +1,8 @@
+color: FFFFFF
+dimmer: 50
+friendlyname: Tasmota Device
+humidity: 60
+ledpower: 1
+power: 1
+relaystate: 0
+temperature: 22.5
